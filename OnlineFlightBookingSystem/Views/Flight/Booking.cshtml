@@ -1,0 +1,82 @@
+﻿ @model OnlineFlightBookingSystem.Models.Flight
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+<h2>Booking</h2>
+
+@using (Html.BeginForm("Booking", "Flight", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Book your Flight</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.Label("Flight ID: ", new { @class = "col-md-2 control-label" })
+        <div class="col-md-2">
+            @Html.DisplayFor(m => m.flight_id, new { @class = "col-md-2 control-label" })
+            <input name="flightId" value="@Model.flight_id" hidden>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Origin Code: ", new { @class = "col-md-2 control-label" })
+        <div class="col-md-2">
+            @Html.DisplayFor(m => m.origin.airport_id, new { @class = "col-md-2 control-label" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Origin: ", new { @class = "col-md-2 control-label" })
+        <div class="col-md-2">
+            @Html.DisplayFor(m => m.origin.country, new { @class = "col-md-2 control-label" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Departure: ", new { @class = "col-md-2 control-label" })
+        <div class="col-md-2">
+            @Html.DisplayFor(m => m.departure_datetime, new { @class = "col-md-2 control-label" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Destination Code: ", new { @class = "col-md-2 control-label" })
+        <div class="col-md-2">
+            @Html.DisplayFor(m => m.origin.airport_id, new { @class = "col-md-2 control-label" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Destination: ", new { @class = "col-md-2 control-label" })
+        <div class="col-md-2">
+            @Html.DisplayFor(m => m.arrive.country, new { @class = "col-md-2 control-label" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Arrival: ", new { @class = "col-md-2 control-label" })
+        <div class="col-md-2">
+            @Html.DisplayFor(m => m.arrive_datetime, new { @class = "col-md-2 control-label" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Class Type: ", new { @class = "col-md-2 control-label" })
+        <div class="col-md-2">
+            @Html.DisplayFor(m => m.flight_class, new { @class = "col-md-2 control-label" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Seat per person: ", new { @class = "col-md-2 control-label" })
+        <div class="col-md-2">
+            @Html.DisplayFor(m => m.flight_cost, new { @class = "col-md-2 control-label" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Number of Passenger:", new { @class = "col-md-2 control-label" })
+        <div class="col-md-2">
+            @Html.TextBox("number", null, new { @class = "col-md-2 form-control", type="number", min = 1})
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Book" />
+        </div>
+    </div>
+}
